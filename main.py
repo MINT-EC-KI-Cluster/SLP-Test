@@ -17,8 +17,9 @@ if __name__ == '__main__':
     input_2.set_weight(0.2)
     input_3.set_weight(0.3)
 
-    input_1.forward()
-    input_2.forward()
-    input_3.forward()
+    # Kommentiere die jeweilige Zeile ein, um die Zwischenergebnisse zu sehen
+    # print(input_1.forward())
+    # print(input_2.forward())
+    # print(input_3.forward())
 
     print(neuron.feedforward())
