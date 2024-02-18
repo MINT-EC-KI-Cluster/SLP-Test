@@ -37,9 +37,9 @@ jobs:
             git config --global user.name "GitHub Actions"
             git add .
             git commit -m "Sync docs folder from ${GITHUB_REPOSITORY}"
-            git push
+            git push origin main
         env:
-          PAT: ${{ steps.generate-token.outputs.token }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           
       - name: Cleanup
         run: rm -rf temp_repo
