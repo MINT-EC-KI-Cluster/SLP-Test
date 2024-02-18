@@ -20,6 +20,9 @@ jobs:
 
       - name: Checkout source repository
         uses: actions/checkout@v2
+
+      - name: Config git
+        run: git config --global url.https://${{ steps.generate-token.outputs.token }}@github.com/.insteadOf https://github.com/
           
       - name: Clone destination repository
         run: git clone https://${{  steps.generate-token.outputs.token }}@github.com/MINT-EC-KI-Cluster/platform.git temp_repo
