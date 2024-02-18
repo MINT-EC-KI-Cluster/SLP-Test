@@ -1,3 +1,0 @@
-MINT-EC-KI-Cluster/platform:
-  - source: docs/
-    dest: pages/{{ github.event.repository.name }}/
