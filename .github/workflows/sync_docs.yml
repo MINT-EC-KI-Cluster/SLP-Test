@@ -31,7 +31,7 @@ jobs:
         run: mkdir -p temp_repo/pages/${{ github.event.repository.name }}
         
       - name: Copy docs folder
-        run: cp -r docs temp_repo/pages/${{ github.event.repository.name }}
+        run: cp -r docs/. temp_repo/pages/${{ github.event.repository.name }}
   
       - name: Commit and push changes
         working-directory: temp_repo
