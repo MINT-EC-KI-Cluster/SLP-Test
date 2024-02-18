@@ -1,0 +1,38 @@
+name: Sync Docs to Another Repository
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync_docs:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Checkout source repository
+        uses: actions/checkout@v2
+
+      - name: Create destination folder if not exists
+        run: |
+          DEST_FOLDER="pages/${{ github.repository }}"
+          if [ ! -d "$DEST_FOLDER" ]; then
+            mkdir -p "$DEST_FOLDER"
+          fi
+
+      - name: Sync docs to another repository
+        uses: repo-sync/github-sync@v2.3.0
+        with:
+          source_repo_token: ${{ steps.generate-token.outputs.token }}
+          source_repo_name: ${{ github.repository }}
+          source_folder: "docs"
+          destination_repo_token: ${{ steps.generate-token.outputs.token }}
+          destination_repo_name: "MINT-EC-KI-Cluster/platform"
+          destination_folder: "pages/${{ github.repository }}"
