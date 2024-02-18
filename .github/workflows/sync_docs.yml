@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v2
           
       - name: Clone destination repository
-        run: git clone https://github.com/MINT-EC-KI-Cluster/platform.git temp_repo
+        run: git clone https://${{  steps.generate-token.outputs.token }}@github.com/MINT-EC-KI-Cluster/platform.git temp_repo
 
       - name: Ensure destination folder exists
         run: mkdir -p temp_repo/pages/${{ github.event.repository.name }}
