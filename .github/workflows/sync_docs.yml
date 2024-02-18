@@ -38,6 +38,8 @@ jobs:
             git add .
             git commit -m "Sync docs folder from ${GITHUB_REPOSITORY}"
             git push
+        env:
+          PAT: ${{ steps.generate-token.outputs.token }}
           
       - name: Cleanup
         run: rm -rf temp_repo
